@@ -29,11 +29,11 @@ The Book Management API is a library system built using Ruby on Rails. It allows
 
 ### Transaction Endpoints
 
-- `POST /transactions/borrow` - Borrow a book (requires `user_id` and `book_id`).
-- `POST /transactions/return` - Return a book (requires `user_id` and `book_id`).
+- `POST /api/v1/transactions/return` - Return a book (requires `user_id` and `book_id`).
+- `POST /api/v1/transactions/borrow` - Borrow a book (requires `user_id` and `book_id`).
 
 ### Book Endpoints
-- `GET /books/:id/income?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD` - Get total income for a book within a date range.
+- `GET /api/v1/books/:id/income?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD` - Get total income for a book within a date range.
 
 ## Design Principles
 
@@ -51,6 +51,9 @@ The Book Management API is a library system built using Ruby on Rails. It allows
 
 - Rswag is used to generate API documentation.
 - Request examples are automatically included.
+
+## How to use Swagger documentation
+After creating a user, log in to retrieve your authentication token. Then, click the `Authorize` button and enter the token obtained from the login response to secure your session.
 
 ## Installation & Setup
 
@@ -92,6 +95,7 @@ The Book Management API is a library system built using Ruby on Rails. It allows
 
 ---
 
-For more details, refer to the API documentation generated via Swagger UI.
+[Swagger API Documentation](http://localhost:3000/api-docs)
+
 
 
