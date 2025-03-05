@@ -24,10 +24,10 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'http://{defaultHost}',
+          url: 'https://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'https://book-management-system-aggt.onrender.com'
+              default: 'book-management-system-aggt.onrender.com'
             }
           }
         }
