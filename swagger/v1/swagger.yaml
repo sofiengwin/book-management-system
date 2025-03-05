@@ -1,0 +1,245 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/books/{id}/income":
+    get:
+      summary: Return book income for a given time period
+      tags:
+      - Books
+      parameters:
+      - name: id
+        in: path
+        description: BookId
+        required: true
+        schema:
+          type: integer
+      - name: start_at
+        in: query
+        format: date
+        description: Start date of book income report
+        required: true
+        schema:
+          type: string
+      - name: end_at
+        in: query
+        format: date
+        description: End date of book income report
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: return book income
+        '404':
+          description: book not found
+        '422':
+          description: invalid request
+  "/api/v1/books/":
+    get:
+      summary: Return books
+      tags:
+      - Books
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: return books
+  "/api/v1/transactions/borrow":
+    post:
+      summary: Borrow a book
+      tags:
+      - Transactions
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '201':
+          description: user created
+        '404':
+          description: user or book not found
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                book_id:
+                  type: integer
+              required:
+              - user_id
+              - book_id
+  "/api/v1/transactions/return":
+    post:
+      summary: Return a book
+      tags:
+      - Transactions
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '201':
+          description: user created
+        '404':
+          description: user or book not found
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                book_id:
+                  type: integer
+              required:
+              - user_id
+              - book_id
+  "/api/v1/users":
+    post:
+      summary: Creates a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email_address:
+                      type: string
+                    password:
+                      type: string
+                    balance:
+                      type: number
+                  required:
+                  - name
+                  - email_address
+                  - balance
+                  - password
+              required:
+              - user
+            examples:
+              valid_example:
+                summary: Valid request example
+                value:
+                  user:
+                    name: Peter Parker
+                    email_address: peter@parker.com
+                    password: passsword
+                    balance: 100
+              invalid_example:
+                summary: Invalid request example
+                value:
+                  user:
+                    name: ''
+                    email_address: ''
+                    password: passsword
+                    balance: 100
+  "/api/v1/users/{id}/account":
+    get:
+      summary: returns user details
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: user found
+        '401':
+          description: unauthorized
+        '404':
+          description: not found
+  "/api/v1/users/{id}/report":
+    get:
+      summary: returns user report
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: user found
+        '401':
+          description: unauthorized
+        '404':
+          description: not found
+  "/session":
+    post:
+      summary: Login user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: authenticated
+        '401':
+          description: unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email_address:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email_address
+              - password
+            examples:
+              valid_example:
+                summary: Valid request example
+                value:
+                  email_address: peter@parker.com
+                  password: passsword
+              invalid_example:
+                summary: Invalid request example
+                value:
+                  email_address: peter@parker.com
+                  password: pas
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
