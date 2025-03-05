@@ -231,10 +231,10 @@ paths:
                   email_address: peter@parker.com
                   password: pas
 servers:
-- url: http://{defaultHost}
+- url: https://{defaultHost}
   variables:
     defaultHost:
-      default: https://book-management-system-aggt.onrender.com
+      default: book-management-system-aggt.onrender.com
 components:
   securitySchemes:
     bearerAuth:
