@@ -20,12 +20,14 @@ paths:
         in: query
         description: Start date of book income report
         required: true
+        default: '2025-03-05'
         schema:
           type: string
       - name: end_at
         in: query
         description: End date of book income report
         required: true
+        default: '2026-03-05'
         schema:
           type: string
       security:
@@ -184,6 +186,12 @@ paths:
       - name: id
         in: path
         required: true
+        schema:
+          type: string
+      - name: report_type
+        in: query
+        description: Report type
+        default: annual
         schema:
           type: string
       security:

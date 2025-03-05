@@ -33,7 +33,7 @@ The Book Management API is a library system built using Ruby on Rails. It allows
 - `POST /api/v1/transactions/borrow` - Borrow a book (requires `user_id` and `book_id`).
 
 ### Book Endpoints
-- `GET /api/v1/books/:id/income?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD` - Get total income for a book within a date range.
+- `GET /api/v1/books/:id/income?start_at=YYYY-MM-DD&end_at=YYYY-MM-DD` - Get total income for a book within a date range.
 
 ## Design Principles
 
@@ -92,6 +92,7 @@ After creating a user, log in to retrieve your authentication token. Then, click
 - Implementing transaction status.
 - Add background jobs for overdue book notifications.
 - Improvements to authentication system
+- Implement validation to prevent users from borrowing a book that they have already checked out.
 
 ---
 

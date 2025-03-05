@@ -72,6 +72,7 @@ describe 'Users API' do
       consumes 'application/json'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
+      parameter name: :report_type, in: :query, type: :string, description: 'Report type', default: 'annual'
       security [ bearerAuth: [] ]
 
       request_body_example value: { id: 1 }, name: 'valid_example', summary: 'Valid request example'
