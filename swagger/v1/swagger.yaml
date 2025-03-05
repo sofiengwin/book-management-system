@@ -18,14 +18,12 @@ paths:
           type: integer
       - name: start_at
         in: query
-        format: date
         description: Start date of book income report
         required: true
         schema:
           type: string
       - name: end_at
         in: query
-        format: date
         description: End date of book income report
         required: true
         schema:
@@ -236,7 +234,7 @@ servers:
 - url: http://{defaultHost}
   variables:
     defaultHost:
-      default: localhost:3000
+      default: https://book-management-system-aggt.onrender.com
 components:
   securitySchemes:
     bearerAuth:

@@ -7,8 +7,8 @@ describe 'Books API' do
       consumes 'application/json'
       produces 'application/json'
       parameter name: :id, in: :path, type: :integer, description: 'BookId', required: true
-      parameter name: :start_at, in: :query, type: :string, format: :date, description: 'Start date of book income report', required: true
-      parameter name: :end_at, in: :query, type: :string, format: :date, description: 'End date of book income report', required: true
+      parameter name: :start_at, in: :query, type: :string, description: 'Start date of book income report', required: true
+      parameter name: :end_at, in: :query, type: :string, description: 'End date of book income report', required: true
       security [ bearerAuth: [] ]
 
       response '200', 'return book income' do
