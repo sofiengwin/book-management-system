@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      # allow_unauthenticated_access only: [ :create ]
+      allow_unauthenticated_access only: [ :create ]
 
       def create
         user = User.new(user_params)
